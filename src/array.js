@@ -14,16 +14,24 @@ class MyArray {
 	}
 
 	pop() {
-		let newArray = {};
-		for (let i = 0; i < this.length; i++){
-			if (i < this.length - 1) {
-				let valueCurrent = this.data[i];
-				console.log(valueCurrent)
-				newArray = { ...newArray, [i]: valueCurrent};
-			}
+		const lasItem = this.data[this.length - 1];
+		delete this.data[this.length - 1];
+		this.length--;
+		return lasItem;
+	}
+
+	delete(index) {
+		const item = this.data[index];
+		this.shiftIndex(index);
+		return item;
+	}
+
+	shiftIndex(index) {
+		for (let i = index; i < this.length - 1; i++){
+			this.data[i] = this.data[i + 1];
 		}
-		this.data = newArray
-		return this.data
+		delete this.data[this.length - 1];
+		this.length--;
 	}
 }
 
