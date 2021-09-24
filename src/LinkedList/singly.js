@@ -16,7 +16,7 @@ let singlyLinkedList = {
 	}
 }
 
-class node {
+class Node {
 	constructor(value) {
 		this.value = value;
 		this.next = null;
@@ -32,6 +32,15 @@ class MySinglyLinkedList {
 		this.tail = this.head;
 		this.length = 1;
 	}
+	append(value) {
+		const node = new Node(value);
+
+		this.tail.next = node;
+		this.tail = node;
+		this.length++;
+
+		return this
+	}
 }
 
-let myLinkedList = new MySinglyLinkedList
+let myLinkedList = new MySinglyLinkedList(1);
