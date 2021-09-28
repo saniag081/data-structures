@@ -68,6 +68,8 @@ class MySinglyLinkedList {
 	insert(index, value) {
 		if (index >= this.length) {
 			return this.append(value);
+		} else if (index <= 0) {
+			return this.prepend(value);
 		}
 
 		const newNode = new Node(value);
@@ -79,6 +81,25 @@ class MySinglyLinkedList {
 		this.length++;
 
 		return this;
+	}
+
+	remove(index) {
+		if (index > 0 && index < this.length) {
+			const firstPointer = this.getTheIndex(index - 1);
+			const removePointer = firstPointer.next.next;
+			firstPointer.next = removePointer;
+
+			this.length--;
+			return this;
+		}
+		else if(index === 0) {
+			const removePointer = this.head.next;
+			this.head = removePointer;
+
+			this.length--;
+			return this;
+		}
+		console.log('porfavor ingrese un indice valido');
 	}
 }
 
